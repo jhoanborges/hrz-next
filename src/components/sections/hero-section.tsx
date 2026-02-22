@@ -49,9 +49,8 @@ export default function HeroSection() {
 							</Button>
 							<Button
 								asChild
-								variant="outline"
 								size="lg"
-								className="rounded-lg px-8 h-12 text-base font-medium border-hrz-blue/20 text-hrz-blue hover:bg-hrz-blue hover:text-background"
+								className="rounded-lg px-8 h-12 text-base font-medium bg-transparent border border-hrz-blue/20 text-hrz-blue hover:bg-hrz-blue hover:text-background"
 							>
 								<Link href="/services">Our Services</Link>
 							</Button>
