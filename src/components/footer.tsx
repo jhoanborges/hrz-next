@@ -1,16 +1,31 @@
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import {
+	Facebook,
+	Instagram,
+	Linkedin,
+	Mail,
+	MapPin,
+	Phone,
+	Twitter,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { PHONE_NUMBER_DISPLAY, PHONE_NUMBER_HREF } from "@/lib/constants";
+
+const socialLinks = [
+	{ icon: Twitter, href: "#", label: "Twitter" },
+	{ icon: Facebook, href: "#", label: "Facebook" },
+	{ icon: Instagram, href: "#", label: "Instagram" },
+	{ icon: Linkedin, href: "#", label: "LinkedIn" },
+];
 
 export default function Footer() {
 	return (
-		<footer className="bg-hrz-blue text-white py-12">
-			<div className="container mx-auto px-4">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+		<footer className="bg-hrz-dark">
+			{/* Main footer */}
+			<div className="container mx-auto px-6 py-16">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 					{/* Logo & description */}
 					<div className="lg:col-span-1">
-						<Link href="/" className="inline-block mb-4">
+						<Link href="/" className="inline-block mb-5">
 							<Image
 								src="/img/logo-trans.png"
 								alt="HRZ Logistics"
@@ -19,153 +34,128 @@ export default function Footer() {
 								className="h-10 w-auto brightness-0 invert"
 							/>
 						</Link>
-						<p className="text-gray-300 text-sm">
+						<p className="text-background/50 text-sm leading-relaxed">
 							We approach warehouse design as a science which needs an in-depth
 							knowledge of the entire supply chain to implement successfully.
 						</p>
-						<div className="flex gap-3 mt-4">
-							<a
-								href="https://twitter.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Twitter className="h-5 w-5" />
-							</a>
-							<a
-								href="https://facebook.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Facebook className="h-5 w-5" />
-							</a>
-							<a
-								href="https://instagram.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Instagram className="h-5 w-5" />
-							</a>
-							<a
-								href="https://linkedin.com"
-								target="_blank"
-								rel="noopener noreferrer"
-								className="text-gray-300 hover:text-white transition-colors"
-							>
-								<Linkedin className="h-5 w-5" />
-							</a>
+						<div className="flex gap-3 mt-6">
+							{socialLinks.map((social) => (
+								<a
+									key={social.label}
+									href={social.href}
+									aria-label={social.label}
+									className="w-9 h-9 rounded-lg bg-background/5 flex items-center justify-center text-background/40 hover:bg-hrz-red hover:text-background transition-all duration-300"
+								>
+									<social.icon className="h-4 w-4" />
+								</a>
+							))}
 						</div>
 					</div>
 
-					{/* Useful Links */}
+					{/* Quick Links */}
 					<div>
-						<h4 className="font-semibold text-lg mb-4">Useful Links</h4>
-						<ul className="space-y-2 text-sm text-gray-300">
-							<li>
-								<Link href="/" className="hover:text-white transition-colors">
-									Home
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Services
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/contact"
-									className="hover:text-white transition-colors"
-								>
-									Contact
-								</Link>
-							</li>
+						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+							Quick Links
+						</h4>
+						<ul className="space-y-3">
+							{[
+								{ href: "/", label: "Home" },
+								{ href: "/services", label: "Services" },
+								{ href: "/contact", label: "Contact" },
+							].map((link) => (
+								<li key={link.href}>
+									<Link
+										href={link.href}
+										className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+									>
+										{link.label}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</div>
 
 					{/* Our Services */}
 					<div>
-						<h4 className="font-semibold text-lg mb-4">Our Services</h4>
-						<ul className="space-y-2 text-sm text-gray-300">
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Warehousing
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Distribution
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Logistics
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Trucking
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/services"
-									className="hover:text-white transition-colors"
-								>
-									Packaging
-								</Link>
-							</li>
+						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+							Our Services
+						</h4>
+						<ul className="space-y-3">
+							{[
+								"Warehousing",
+								"Distribution",
+								"Logistics",
+								"Trucking",
+								"Packaging",
+							].map((service) => (
+								<li key={service}>
+									<Link
+										href="/services"
+										className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+									>
+										{service}
+									</Link>
+								</li>
+							))}
 						</ul>
 					</div>
 
-					{/* Contact Us */}
+					{/* Contact Info */}
 					<div>
-						<h4 className="font-semibold text-lg mb-4">Contact Us</h4>
-						<div className="text-sm text-gray-300 space-y-2">
-							<p>
-								Av. industrial libramiento 111
-								<br />
-								Parque Industrial libramiento
-								<br />
-								General Escobedo,
-								<br />
-								Nuevo León, México
-							</p>
-							<p>
-								<strong>Phone:</strong>{" "}
+						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+							Contact Us
+						</h4>
+						<div className="space-y-4">
+							<div className="flex gap-3">
+								<MapPin className="h-4 w-4 text-hrz-red flex-shrink-0 mt-1" />
+								<p className="text-sm text-background/50 leading-relaxed">
+									Av. industrial libramiento 111, Parque Industrial libramiento,
+									General Escobedo, Nuevo Leon, Mexico
+								</p>
+							</div>
+							<div className="flex gap-3 items-center">
+								<Phone className="h-4 w-4 text-hrz-red flex-shrink-0" />
 								<a
-									href={PHONE_NUMBER_HREF}
-									className="hover:text-white transition-colors"
+									href="tel:+528112853039"
+									className="text-sm text-background/50 hover:text-hrz-red transition-colors"
 								>
-									{PHONE_NUMBER_DISPLAY}
+									+52 81 1285 3039
 								</a>
-							</p>
-							<p>
-								<strong>Email:</strong>{" "}
+							</div>
+							<div className="flex gap-3 items-center">
+								<Mail className="h-4 w-4 text-hrz-red flex-shrink-0" />
 								<a
 									href="mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page."
-									className="hover:text-white transition-colors"
+									className="text-sm text-background/50 hover:text-hrz-red transition-colors"
 								>
 									info@hrzlogistics.mx
 								</a>
-							</p>
+							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+
+			{/* Bottom bar */}
+			<div className="border-t border-background/10">
+				<div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+					<p className="text-xs text-background/40">
+						&copy; {new Date().getFullYear()} HRZ Logistics. All rights
+						reserved.
+					</p>
+					<div className="flex gap-6">
+						<Link
+							href="#"
+							className="text-xs text-background/40 hover:text-background/70 transition-colors"
+						>
+							Privacy Policy
+						</Link>
+						<Link
+							href="#"
+							className="text-xs text-background/40 hover:text-background/70 transition-colors"
+						>
+							Terms of Service
+						</Link>
 					</div>
 				</div>
 			</div>

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans, Poppins } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
-import FloatingWhatsAppButton from "@/components/floating-whatsapp";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
@@ -19,8 +17,9 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-	title: "HRZ Logistics",
-	description: "Warehousing and Distribution - HRZ Logistics",
+	title: "HRZ Logistics - Warehousing & Distribution",
+	description:
+		"HRZ Logistics provides end-to-end warehousing and distribution solutions across 50+ countries. Storage, logistics, cargo, trucking, and packaging services.",
 	icons: {
 		icon: "/favicon-32x32.png",
 		apple: "/apple-touch-icon.png",
@@ -34,27 +33,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<head>
-				<Script
-					src="https://www.googletagmanager.com/gtag/js?id=G-TTSYX0TGR1"
-					strategy="afterInteractive"
-				/>
-				<Script id="gtag-init" strategy="afterInteractive">
-					{`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TTSYX0TGR1');
-          `}
-				</Script>
-			</head>
 			<body
 				className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}
 			>
 				<Header />
-				<main className="pt-16">{children}</main>
+				<main className="pt-18">{children}</main>
 				<Footer />
-				<FloatingWhatsAppButton />
 			</body>
 		</html>
 	);
