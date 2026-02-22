@@ -35,9 +35,8 @@ export default function CtaSection() {
 						</Button>
 						<Button
 							asChild
-							variant="outline"
 							size="lg"
-							className="rounded-lg px-8 h-12 text-base font-medium border-background/20 text-background hover:bg-background/10"
+							className="rounded-lg px-8 h-12 text-base font-medium bg-transparent border border-background/30 text-background hover:bg-background hover:text-hrz-blue"
 						>
 							<Link href="/services">Explore Services</Link>
 						</Button>
