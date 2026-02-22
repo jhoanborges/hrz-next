@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Open_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -32,6 +33,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TTSYX0TGR1"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TTSYX0TGR1');
+          `}
+        </Script>
+      </head>
       <body className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}>
         <Header />
         <main className="pt-16">{children}</main>
