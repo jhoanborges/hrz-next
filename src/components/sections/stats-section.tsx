@@ -12,8 +12,8 @@ export default function StatsSection() {
             Numbers That Speak for Themselves
           </h2>
         </div>
-        <div className="max-w-4xl mx-auto [&_*]:!text-background [&_.text-hrz-red]:!text-hrz-red [&_.text-hrz-red\\/70]:!text-hrz-red/70 [&_.text-muted-foreground]:!text-background/60">
-          <StatsCounter />
+        <div className="max-w-4xl mx-auto">
+          <StatsCounter variant="dark" />
         </div>
       </div>
     </section>

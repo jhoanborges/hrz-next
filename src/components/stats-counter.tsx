@@ -45,26 +45,41 @@ function StatItem({
   end,
   label,
   suffix,
+  dark,
 }: {
   end: number;
   label: string;
   suffix: string;
+  dark: boolean;
 }) {
   const { count, ref } = useCountUp(end);
   return (
     <div ref={ref} className="text-center">
-      <div className="text-4xl lg:text-5xl font-bold text-hrz-red tracking-tight">
+      <div
+        className={`text-4xl lg:text-5xl font-bold tracking-tight ${
+          dark ? "text-background" : "text-hrz-red"
+        }`}
+      >
         {count}
-        <span className="text-hrz-red/70">{suffix}</span>
+        <span className={dark ? "opacity-70" : "opacity-70"}>{suffix}</span>
       </div>
-      <div className="mt-2 text-sm font-medium text-muted-foreground uppercase tracking-wider">
+      <div
+        className={`mt-2 text-sm font-medium uppercase tracking-wider ${
+          dark ? "text-background/60" : "text-muted-foreground"
+        }`}
+      >
         {label}
       </div>
     </div>
   );
 }
 
-export default function StatsCounter({ variant = "default" }: { variant?: "default" | "dark" }) {
+export default function StatsCounter({
+  variant = "default",
+}: {
+  variant?: "default" | "dark";
+}) {
+  const isDark = variant === "dark";
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
       {stats.map((stat) => (
@@ -73,6 +88,7 @@ export default function StatsCounter({ variant = "default" }: { variant?: "defau
           end={stat.end}
           label={stat.label}
           suffix={stat.suffix}
+          dark={isDark}
         />
       ))}
     </div>
