@@ -72,8 +72,8 @@ export default function Footer() {
               </p>
               <p>
                 <strong>Phone:</strong>{" "}
-                <a href="tel:+52811658548" className="hover:text-white transition-colors">
-                  +52 81 1658 5488
+                <a href="tel:+528112853039" className="hover:text-white transition-colors">
+                  +52 81 1285 3039
                 </a>
               </p>
               <p>

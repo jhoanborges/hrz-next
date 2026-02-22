@@ -105,10 +105,10 @@ export default function ContactPage() {
                   <h4 className="font-semibold text-hrz-blue">Call:</h4>
                   <p className="text-sm">
                     <a
-                      href="tel:+52811658548"
+                      href="tel:+528112853039"
                       className="text-muted-foreground hover:text-hrz-red transition-colors"
                     >
-                      +52 81 1658 5488
+                      +52 81 1285 3039
                     </a>
                   </p>
                 </div>
