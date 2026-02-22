@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Poppins } from "next/font/google";
 import "./globals.css";
+import FloatingWhatsAppButton from "@/components/floating-whatsapp";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
 				<Header />
 				<main className="pt-18">{children}</main>
 				<Footer />
+				<FloatingWhatsAppButton />
 			</body>
 		</html>
 	);
