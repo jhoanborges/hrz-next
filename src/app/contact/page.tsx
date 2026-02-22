@@ -52,10 +52,10 @@ export default function ContactPage() {
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
 							Get In Touch
 						</span>
-						<h1 className="text-4xl md:text-5xl font-bold text-background mt-3 leading-tight text-balance">
+						<h1 className="text-4xl md:text-5xl font-bold text-white mt-3 leading-tight text-balance">
 							Contact Us
 						</h1>
-						<p className="text-background/60 mt-5 text-lg leading-relaxed">
+						<p className="text-white/60 mt-5 text-lg leading-relaxed">
 							Located in Monterrey, Mexico with easy access to all ports in the
 							country for your global warehousing needs.
 						</p>
@@ -64,7 +64,7 @@ export default function ContactPage() {
 			</section>
 
 			{/* Breadcrumb */}
-			<nav className="bg-hrz-light py-3 border-b border-border/50">
+			<nav className="bg-hrz-light dark:bg-hrz-dark py-3 border-b border-border/50">
 				<div className="container mx-auto px-6">
 					<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 						<li>
@@ -73,7 +73,9 @@ export default function ContactPage() {
 							</Link>
 						</li>
 						<li className="text-muted-foreground/40">/</li>
-						<li className="text-hrz-blue font-medium">Contact</li>
+						<li className="text-hrz-blue dark:text-white font-medium">
+							Contact
+						</li>
 					</ol>
 				</div>
 			</nav>
@@ -95,7 +97,7 @@ export default function ContactPage() {
 						{/* Contact Info */}
 						<div className="space-y-6">
 							<div>
-								<h2 className="text-2xl font-bold text-hrz-blue mb-2">
+								<h2 className="text-2xl font-bold text-hrz-blue dark:text-white mb-2">
 									Reach Out to Us
 								</h2>
 								<p className="text-muted-foreground text-sm leading-relaxed">
@@ -113,7 +115,7 @@ export default function ContactPage() {
 										<item.icon className="h-5 w-5 text-hrz-red" />
 									</div>
 									<div>
-										<h4 className="font-semibold text-hrz-blue text-sm">
+										<h4 className="font-semibold text-hrz-blue dark:text-white text-sm">
 											{item.title}
 										</h4>
 										{item.href ? (
@@ -135,8 +137,8 @@ export default function ContactPage() {
 
 						{/* Contact Form */}
 						<div className="lg:col-span-2">
-							<div className="p-8 rounded-2xl border border-border/50 bg-hrz-light/50">
-								<h2 className="text-2xl font-bold text-hrz-blue mb-2">
+							<div className="p-8 rounded-2xl border border-border/50 bg-hrz-light/50 dark:bg-hrz-dark/50">
+								<h2 className="text-2xl font-bold text-hrz-blue dark:text-white mb-2">
 									Send Us a Message
 								</h2>
 								<p className="text-sm text-muted-foreground mb-6">
@@ -175,12 +177,12 @@ export default function ContactPage() {
 									/>
 
 									{status === "sent" && (
-										<div className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-lg">
+										<div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-sm px-4 py-3 rounded-lg">
 											Your message has been sent. Thank you!
 										</div>
 									)}
 									{status === "error" && (
-										<div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
+										<div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm px-4 py-3 rounded-lg">
 											Something went wrong. Please try again.
 										</div>
 									)}
@@ -188,7 +190,7 @@ export default function ContactPage() {
 									<Button
 										type="submit"
 										disabled={status === "sending"}
-										className="bg-hrz-red hover:bg-hrz-red/90 text-background rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
+										className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
 									>
 										{status === "sending" ? (
 											"Sending..."

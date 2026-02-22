@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
 	Sheet,
@@ -57,7 +58,7 @@ export default function Header() {
 							key={link.href}
 							href={link.href}
 							className={`relative text-sm font-medium tracking-wide transition-colors hover:text-hrz-red ${
-								pathname === link.href ? "text-hrz-red" : "text-hrz-blue"
+								pathname === link.href ? "text-hrz-red" : "text-foreground"
 							} after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:bg-hrz-red after:transition-all after:duration-300 ${
 								pathname === link.href
 									? "after:w-full"
@@ -67,9 +68,10 @@ export default function Header() {
 							{link.label}
 						</Link>
 					))}
+					<ThemeToggle />
 					<Button
 						asChild
-						className="bg-hrz-red hover:bg-hrz-red/90 text-background rounded-lg px-6 font-medium shadow-sm"
+						className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-6 font-medium shadow-sm"
 					>
 						<Link href="/contact">Get a Quote</Link>
 					</Button>
@@ -78,7 +80,7 @@ export default function Header() {
 				{/* Mobile nav */}
 				<Sheet open={open} onOpenChange={setOpen}>
 					<SheetTrigger asChild className="md:hidden">
-						<Button variant="ghost" size="icon" className="text-hrz-blue">
+						<Button variant="ghost" size="icon" className="text-foreground">
 							<Menu className="h-6 w-6" />
 						</Button>
 					</SheetTrigger>
@@ -93,15 +95,19 @@ export default function Header() {
 									className={`text-lg font-medium py-3 px-4 rounded-lg transition-colors ${
 										pathname === link.href
 											? "text-hrz-red bg-hrz-red/5"
-											: "text-hrz-blue hover:bg-secondary"
+											: "text-foreground hover:bg-secondary"
 									}`}
 								>
 									{link.label}
 								</Link>
 							))}
+							<div className="flex items-center gap-2 px-4 py-3">
+								<span className="text-sm text-muted-foreground">Theme</span>
+								<ThemeToggle />
+							</div>
 							<Button
 								asChild
-								className="bg-hrz-red hover:bg-hrz-red/90 text-background mt-4 rounded-lg"
+								className="bg-hrz-red hover:bg-hrz-red/90 text-white mt-4 rounded-lg"
 							>
 								<Link href="/contact" onClick={() => setOpen(false)}>
 									Get a Quote

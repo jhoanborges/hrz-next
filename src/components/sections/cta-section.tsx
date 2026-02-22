@@ -1,5 +1,8 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Fade, Slide } from "react-awesome-reveal";
 import { Button } from "@/components/ui/button";
 
 export default function CtaSection() {
@@ -11,36 +14,44 @@ export default function CtaSection() {
 
 			<div className="container mx-auto px-6 relative">
 				<div className="max-w-3xl mx-auto text-center">
-					<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-						Get Started
-					</span>
-					<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-background mt-4 leading-tight text-balance">
-						Local Expertise, Global Coverage
-					</h2>
-					<p className="text-background/70 text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-						Present in over 50 countries and backed by our extensive network,
-						our teams of local experts are ready to advise you on the best
-						solution for your business.
-					</p>
-					<div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-						<Button
-							asChild
-							size="lg"
-							className="bg-hrz-red hover:bg-hrz-red/90 text-background rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/30"
-						>
-							<Link href="/contact">
-								Request a Quote
-								<ArrowRight className="ml-2 h-4 w-4" />
-							</Link>
-						</Button>
-						<Button
-							asChild
-							size="lg"
-							className="rounded-lg px-8 h-12 text-base font-medium bg-transparent border border-background/30 text-background hover:bg-background hover:text-hrz-blue"
-						>
-							<Link href="/services">Explore Services</Link>
-						</Button>
-					</div>
+					<Fade triggerOnce>
+						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
+							Get Started
+						</span>
+					</Fade>
+					<Slide direction="up" triggerOnce>
+						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 leading-tight text-balance">
+							Local Expertise, Global Coverage
+						</h2>
+					</Slide>
+					<Fade triggerOnce delay={200}>
+						<p className="text-white/70 text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
+							Present in over 50 countries and backed by our extensive network,
+							our teams of local experts are ready to advise you on the best
+							solution for your business.
+						</p>
+					</Fade>
+					<Fade triggerOnce delay={400}>
+						<div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+							<Button
+								asChild
+								size="lg"
+								className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/30"
+							>
+								<Link href="/contact">
+									Request a Quote
+									<ArrowRight className="ml-2 h-4 w-4" />
+								</Link>
+							</Button>
+							<Button
+								asChild
+								size="lg"
+								className="rounded-lg px-8 h-12 text-base font-medium bg-transparent border border-background/30 text-white hover:bg-background hover:text-hrz-blue"
+							>
+								<Link href="/services">Explore Services</Link>
+							</Button>
+						</div>
+					</Fade>
 				</div>
 			</div>
 		</section>

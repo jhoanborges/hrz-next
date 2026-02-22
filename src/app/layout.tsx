@@ -4,6 +4,7 @@ import "./globals.css";
 import FloatingWhatsAppButton from "@/components/floating-whatsapp";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
 	subsets: ["latin"],
@@ -33,14 +34,21 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" suppressHydrationWarning>
 			<body
 				className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}
 			>
-				<Header />
-				<main className="pt-18">{children}</main>
-				<Footer />
-				<FloatingWhatsAppButton />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="light"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<Header />
+					<main className="pt-18">{children}</main>
+					<Footer />
+					<FloatingWhatsAppButton />
+				</ThemeProvider>
 			</body>
 		</html>
 	);

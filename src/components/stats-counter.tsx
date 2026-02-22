@@ -57,7 +57,7 @@ function StatItem({
 		<div ref={ref} className="text-center">
 			<div
 				className={`text-4xl lg:text-5xl font-bold tracking-tight ${
-					dark ? "text-background" : "text-hrz-red"
+					dark ? "text-white" : "text-hrz-red"
 				}`}
 			>
 				{count}
@@ -65,7 +65,7 @@ function StatItem({
 			</div>
 			<div
 				className={`mt-2 text-sm font-medium uppercase tracking-wider ${
-					dark ? "text-background/60" : "text-muted-foreground"
+					dark ? "text-white/60" : "text-muted-foreground"
 				}`}
 			>
 				{label}

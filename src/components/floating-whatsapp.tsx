@@ -1,10 +1,12 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { COMPANY_NAME, PHONE_NUMBER } from "@/lib/constants";
 
 export default function FloatingWhatsAppButton() {
+	const { resolvedTheme } = useTheme();
 	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
@@ -23,6 +25,7 @@ export default function FloatingWhatsAppButton() {
 			statusMessage="Normalmente responde en 1 hora"
 			notificationSound
 			allowEsc
+			darkMode={resolvedTheme === "dark"}
 		/>
 	);
 }

@@ -54,10 +54,10 @@ export default function ServicesPage() {
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
 							What We Offer
 						</span>
-						<h1 className="text-4xl md:text-5xl font-bold text-background mt-3 leading-tight text-balance">
+						<h1 className="text-4xl md:text-5xl font-bold text-white mt-3 leading-tight text-balance">
 							Our Services
 						</h1>
-						<p className="text-background/60 mt-5 text-lg leading-relaxed">
+						<p className="text-white/60 mt-5 text-lg leading-relaxed">
 							We store a vast array of inventory for our clients and our
 							warehouse storage and distribution services are unique to each
 							client.
@@ -67,7 +67,7 @@ export default function ServicesPage() {
 			</section>
 
 			{/* Breadcrumb */}
-			<nav className="bg-hrz-light py-3 border-b border-border/50">
+			<nav className="bg-hrz-light dark:bg-hrz-dark py-3 border-b border-border/50">
 				<div className="container mx-auto px-6">
 					<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 						<li>
@@ -76,7 +76,9 @@ export default function ServicesPage() {
 							</Link>
 						</li>
 						<li className="text-muted-foreground/40">/</li>
-						<li className="text-hrz-blue font-medium">Services</li>
+						<li className="text-hrz-blue dark:text-white font-medium">
+							Services
+						</li>
 					</ol>
 				</div>
 			</nav>
@@ -100,7 +102,7 @@ export default function ServicesPage() {
 									<div className="absolute inset-0 bg-hrz-blue/20 group-hover:bg-hrz-blue/10 transition-colors duration-500" />
 								</div>
 								<div className="p-6">
-									<h3 className="font-semibold text-lg text-hrz-blue mb-2 group-hover:text-hrz-red transition-colors">
+									<h3 className="font-semibold text-lg text-hrz-blue dark:text-white mb-2 group-hover:text-hrz-red transition-colors">
 										{service.title}
 									</h3>
 									<p className="text-sm text-muted-foreground leading-relaxed">
@@ -118,7 +120,7 @@ export default function ServicesPage() {
 						</p>
 						<Button
 							asChild
-							className="bg-hrz-red hover:bg-hrz-red/90 text-background rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
+							className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
 						>
 							<Link href="/contact">
 								Get a Quote

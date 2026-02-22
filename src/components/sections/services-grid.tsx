@@ -1,6 +1,9 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Fade, Slide } from "react-awesome-reveal";
 
 const services = [
 	{
@@ -43,49 +46,52 @@ const services = [
 
 export default function ServicesGrid() {
 	return (
-		<section className="py-20 lg:py-28 bg-hrz-light">
+		<section className="py-20 lg:py-28 bg-hrz-light dark:bg-hrz-dark">
 			<div className="container mx-auto px-6">
-				<div className="text-center mb-14">
-					<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-						What We Do
-					</span>
-					<h2 className="text-3xl md:text-4xl font-bold text-hrz-blue mt-3 text-balance">
-						Our Services
-					</h2>
-					<p className="text-muted-foreground mt-4 max-w-2xl mx-auto leading-relaxed">
-						Comprehensive warehousing and logistics solutions tailored to your
-						business needs across the globe.
-					</p>
-				</div>
+				<Slide direction="up" triggerOnce>
+					<div className="text-center mb-14">
+						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
+							What We Do
+						</span>
+						<h2 className="text-3xl md:text-4xl font-bold text-hrz-blue dark:text-white mt-3 text-balance">
+							Our Services
+						</h2>
+						<p className="text-muted-foreground mt-4 max-w-2xl mx-auto leading-relaxed">
+							Comprehensive warehousing and logistics solutions tailored to your
+							business needs across the globe.
+						</p>
+					</div>
+				</Slide>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-					{services.map((service) => (
-						<Link
-							href="/services"
-							key={service.title}
-							className="group relative bg-background rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:shadow-hrz-blue/5 transition-all duration-500"
-						>
-							<div className="relative h-52 overflow-hidden">
-								<Image
-									src={service.image}
-									alt={service.title}
-									fill
-									className="object-cover group-hover:scale-105 transition-transform duration-500"
-								/>
-								<div className="absolute inset-0 bg-hrz-blue/20 group-hover:bg-hrz-blue/10 transition-colors duration-500" />
-							</div>
-							<div className="p-6">
-								<h3 className="font-semibold text-lg text-hrz-blue mb-2 group-hover:text-hrz-red transition-colors">
-									{service.title}
-								</h3>
-								<p className="text-sm text-muted-foreground leading-relaxed">
-									{service.description}
-								</p>
-								<div className="flex items-center gap-1.5 text-sm font-medium text-hrz-red mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-									Learn More <ArrowRight className="h-4 w-4" />
+					{services.map((service, i) => (
+						<Fade key={service.title} triggerOnce delay={i * 100}>
+							<Link
+								href="/services"
+								className="group relative bg-background rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:shadow-hrz-blue/5 transition-all duration-500 block h-full"
+							>
+								<div className="relative h-52 overflow-hidden">
+									<Image
+										src={service.image}
+										alt={service.title}
+										fill
+										className="object-cover group-hover:scale-105 transition-transform duration-500"
+									/>
+									<div className="absolute inset-0 bg-hrz-blue/20 group-hover:bg-hrz-blue/10 transition-colors duration-500" />
 								</div>
-							</div>
-						</Link>
+								<div className="p-6">
+									<h3 className="font-semibold text-lg text-hrz-blue dark:text-white mb-2 group-hover:text-hrz-red transition-colors">
+										{service.title}
+									</h3>
+									<p className="text-sm text-muted-foreground leading-relaxed">
+										{service.description}
+									</p>
+									<div className="flex items-center gap-1.5 text-sm font-medium text-hrz-red mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+										Learn More <ArrowRight className="h-4 w-4" />
+									</div>
+								</div>
+							</Link>
+						</Fade>
 					))}
 				</div>
 			</div>

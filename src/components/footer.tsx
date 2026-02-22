@@ -34,7 +34,7 @@ export default function Footer() {
 								className="h-10 w-auto brightness-0 invert"
 							/>
 						</Link>
-						<p className="text-background/50 text-sm leading-relaxed">
+						<p className="text-white/50 text-sm leading-relaxed">
 							We approach warehouse design as a science which needs an in-depth
 							knowledge of the entire supply chain to implement successfully.
 						</p>
@@ -44,7 +44,7 @@ export default function Footer() {
 									key={social.label}
 									href={social.href}
 									aria-label={social.label}
-									className="w-9 h-9 rounded-lg bg-background/5 flex items-center justify-center text-background/40 hover:bg-hrz-red hover:text-background transition-all duration-300"
+									className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-white/40 hover:bg-hrz-red hover:text-white transition-all duration-300"
 								>
 									<social.icon className="h-4 w-4" />
 								</a>
@@ -54,7 +54,7 @@ export default function Footer() {
 
 					{/* Quick Links */}
 					<div>
-						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
 							Quick Links
 						</h4>
 						<ul className="space-y-3">
@@ -66,7 +66,7 @@ export default function Footer() {
 								<li key={link.href}>
 									<Link
 										href={link.href}
-										className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+										className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 									>
 										{link.label}
 									</Link>
@@ -77,7 +77,7 @@ export default function Footer() {
 
 					{/* Our Services */}
 					<div>
-						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
 							Our Services
 						</h4>
 						<ul className="space-y-3">
@@ -91,7 +91,7 @@ export default function Footer() {
 								<li key={service}>
 									<Link
 										href="/services"
-										className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+										className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 									>
 										{service}
 									</Link>
@@ -102,13 +102,13 @@ export default function Footer() {
 
 					{/* Contact Info */}
 					<div>
-						<h4 className="font-semibold text-background text-sm uppercase tracking-wider mb-5">
+						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
 							Contact Us
 						</h4>
 						<div className="space-y-4">
 							<div className="flex gap-3">
 								<MapPin className="h-4 w-4 text-hrz-red flex-shrink-0 mt-1" />
-								<p className="text-sm text-background/50 leading-relaxed">
+								<p className="text-sm text-white/50 leading-relaxed">
 									Av. industrial libramiento 111, Parque Industrial libramiento,
 									General Escobedo, Nuevo Leon, Mexico
 								</p>
@@ -117,7 +117,7 @@ export default function Footer() {
 								<Phone className="h-4 w-4 text-hrz-red flex-shrink-0" />
 								<a
 									href="tel:+528112853039"
-									className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+									className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 								>
 									+52 81 1285 3039
 								</a>
@@ -126,7 +126,7 @@ export default function Footer() {
 								<Mail className="h-4 w-4 text-hrz-red flex-shrink-0" />
 								<a
 									href="mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page."
-									className="text-sm text-background/50 hover:text-hrz-red transition-colors"
+									className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 								>
 									info@hrzlogistics.mx
 								</a>
@@ -137,22 +137,22 @@ export default function Footer() {
 			</div>
 
 			{/* Bottom bar */}
-			<div className="border-t border-background/10">
+			<div className="border-t border-white/10">
 				<div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-					<p className="text-xs text-background/40">
+					<p className="text-xs text-white/40">
 						&copy; {new Date().getFullYear()} HRZ Logistics. All rights
 						reserved.
 					</p>
 					<div className="flex gap-6">
 						<Link
 							href="#"
-							className="text-xs text-background/40 hover:text-background/70 transition-colors"
+							className="text-xs text-white/40 hover:text-white/70 transition-colors"
 						>
 							Privacy Policy
 						</Link>
 						<Link
 							href="#"
-							className="text-xs text-background/40 hover:text-background/70 transition-colors"
+							className="text-xs text-white/40 hover:text-white/70 transition-colors"
 						>
 							Terms of Service
 						</Link>
