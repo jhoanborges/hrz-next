@@ -4,7 +4,9 @@ import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+import LocaleSwitcher from "@/components/locale-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,15 +17,16 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
-	{ href: "/", label: "Home" },
-	{ href: "/services", label: "Services" },
-	{ href: "/contact", label: "Contact" },
-];
+	{ href: "/", key: "home" },
+	{ href: "/services", key: "services" },
+	{ href: "/contact", key: "contact" },
+] as const;
 
 export default function Header() {
 	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
+	const t = useTranslations("Header");
 
 	useEffect(() => {
 		const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -65,15 +68,16 @@ export default function Header() {
 									: "after:w-0 hover:after:w-full"
 							}`}
 						>
-							{link.label}
+							{t(link.key)}
 						</Link>
 					))}
+					<LocaleSwitcher />
 					<ThemeToggle />
 					<Button
 						asChild
 						className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-6 font-medium shadow-sm"
 					>
-						<Link href="/contact">Get a Quote</Link>
+						<Link href="/contact">{t("getQuote")}</Link>
 					</Button>
 				</nav>
 
@@ -85,7 +89,7 @@ export default function Header() {
 						</Button>
 					</SheetTrigger>
 					<SheetContent side="right" className="w-72 bg-background">
-						<SheetTitle className="sr-only">Navigation</SheetTitle>
+						<SheetTitle className="sr-only">{t("navigation")}</SheetTitle>
 						<nav className="flex flex-col gap-2 mt-10">
 							{navLinks.map((link) => (
 								<Link
@@ -98,19 +102,24 @@ export default function Header() {
 											: "text-foreground hover:bg-secondary"
 									}`}
 								>
-									{link.label}
+									{t(link.key)}
 								</Link>
 							))}
 							<div className="flex items-center gap-2 px-4 py-3">
-								<span className="text-sm text-muted-foreground">Theme</span>
+								<span className="text-sm text-muted-foreground">
+									{t("theme")}
+								</span>
 								<ThemeToggle />
+							</div>
+							<div className="flex items-center gap-2 px-4 py-3">
+								<LocaleSwitcher />
 							</div>
 							<Button
 								asChild
 								className="bg-hrz-red hover:bg-hrz-red/90 text-white mt-4 rounded-lg"
 							>
 								<Link href="/contact" onClick={() => setOpen(false)}>
-									Get a Quote
+									{t("getQuote")}
 								</Link>
 							</Button>
 						</nav>

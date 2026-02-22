@@ -1,19 +1,22 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { Fade } from "react-awesome-reveal";
 import StatsCounter from "@/components/stats-counter";
 
 export default function StatsSection() {
+	const t = useTranslations("Stats");
+
 	return (
 		<section className="py-20 lg:py-24 bg-hrz-blue">
 			<div className="container mx-auto px-6">
 				<Fade triggerOnce>
 					<div className="text-center mb-14">
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-							Our Track Record
+							{t("badge")}
 						</span>
 						<h2 className="text-3xl md:text-4xl font-bold text-white mt-3 text-balance">
-							Numbers That Speak for Themselves
+							{t("title")}
 						</h2>
 					</div>
 				</Fade>

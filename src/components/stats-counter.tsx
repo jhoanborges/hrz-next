@@ -1,13 +1,7 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-
-const stats = [
-	{ end: 232, suffix: "+", label: "Clients Worldwide" },
-	{ end: 521, suffix: "+", label: "Projects Delivered" },
-	{ end: 1453, suffix: "", label: "Hours of Support" },
-	{ end: 32, suffix: "+", label: "Team Members" },
-];
 
 function useCountUp(end: number, duration = 2000) {
 	const [count, setCount] = useState(0);
@@ -61,7 +55,7 @@ function StatItem({
 				}`}
 			>
 				{count}
-				<span className={dark ? "opacity-70" : "opacity-70"}>{suffix}</span>
+				<span className="opacity-70">{suffix}</span>
 			</div>
 			<div
 				className={`mt-2 text-sm font-medium uppercase tracking-wider ${
@@ -80,13 +74,22 @@ export default function StatsCounter({
 	variant?: "default" | "dark";
 }) {
 	const isDark = variant === "dark";
+	const t = useTranslations("Stats");
+
+	const stats = [
+		{ end: 232, suffix: "+", labelKey: "clientsWorldwide" as const },
+		{ end: 521, suffix: "+", labelKey: "projectsDelivered" as const },
+		{ end: 1453, suffix: "", labelKey: "hoursOfSupport" as const },
+		{ end: 32, suffix: "+", labelKey: "teamMembers" as const },
+	];
+
 	return (
 		<div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
 			{stats.map((stat) => (
 				<StatItem
-					key={stat.label}
+					key={stat.labelKey}
 					end={stat.end}
-					label={stat.label}
+					label={t(stat.labelKey)}
 					suffix={stat.suffix}
 					dark={isDark}
 				/>

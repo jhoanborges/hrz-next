@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Facebook,
 	Instagram,
@@ -9,6 +11,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const socialLinks = [
 	{ icon: Twitter, href: "#", label: "Twitter" },
@@ -18,6 +21,8 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+	const t = useTranslations("Footer");
+
 	return (
 		<footer className="bg-hrz-dark">
 			{/* Main footer */}
@@ -35,8 +40,7 @@ export default function Footer() {
 							/>
 						</Link>
 						<p className="text-white/50 text-sm leading-relaxed">
-							We approach warehouse design as a science which needs an in-depth
-							knowledge of the entire supply chain to implement successfully.
+							{t("description")}
 						</p>
 						<div className="flex gap-3 mt-6">
 							{socialLinks.map((social) => (
@@ -55,20 +59,20 @@ export default function Footer() {
 					{/* Quick Links */}
 					<div>
 						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
-							Quick Links
+							{t("quickLinks")}
 						</h4>
 						<ul className="space-y-3">
 							{[
-								{ href: "/", label: "Home" },
-								{ href: "/services", label: "Services" },
-								{ href: "/contact", label: "Contact" },
+								{ href: "/", key: "home" as const },
+								{ href: "/services", key: "services" as const },
+								{ href: "/contact", key: "contact" as const },
 							].map((link) => (
 								<li key={link.href}>
 									<Link
 										href={link.href}
 										className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 									>
-										{link.label}
+										{t(link.key)}
 									</Link>
 								</li>
 							))}
@@ -78,22 +82,24 @@ export default function Footer() {
 					{/* Our Services */}
 					<div>
 						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
-							Our Services
+							{t("ourServices")}
 						</h4>
 						<ul className="space-y-3">
-							{[
-								"Warehousing",
-								"Distribution",
-								"Logistics",
-								"Trucking",
-								"Packaging",
-							].map((service) => (
-								<li key={service}>
+							{(
+								[
+									"warehousing",
+									"distribution",
+									"logistics",
+									"trucking",
+									"packaging",
+								] as const
+							).map((key) => (
+								<li key={key}>
 									<Link
 										href="/services"
 										className="text-sm text-white/50 hover:text-hrz-red transition-colors"
 									>
-										{service}
+										{t(key)}
 									</Link>
 								</li>
 							))}
@@ -103,7 +109,7 @@ export default function Footer() {
 					{/* Contact Info */}
 					<div>
 						<h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-5">
-							Contact Us
+							{t("contactUs")}
 						</h4>
 						<div className="space-y-4">
 							<div className="flex gap-3">
@@ -140,21 +146,20 @@ export default function Footer() {
 			<div className="border-t border-white/10">
 				<div className="container mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
 					<p className="text-xs text-white/40">
-						&copy; {new Date().getFullYear()} HRZ Logistics. All rights
-						reserved.
+						{t("copyright", { year: new Date().getFullYear() })}
 					</p>
 					<div className="flex gap-6">
 						<Link
 							href="#"
 							className="text-xs text-white/40 hover:text-white/70 transition-colors"
 						>
-							Privacy Policy
+							{t("privacyPolicy")}
 						</Link>
 						<Link
 							href="#"
 							className="text-xs text-white/40 hover:text-white/70 transition-colors"
 						>
-							Terms of Service
+							{t("termsOfService")}
 						</Link>
 					</div>
 				</div>

@@ -2,81 +2,82 @@
 
 import { Check } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Fade, Slide } from "react-awesome-reveal";
 
 const features = [
 	{
 		image: "/assets/img/warehousing-service.jpg",
-		title: "Warehouse Management System",
-		subtitle:
-			"We can control our warehouse's entire inbound inventory process in Mexico through this warehouse management system.",
-		items: ["Warehouse.", "Crossdock Services.", "Logistics management."],
+		titleKey: "wmsTitle",
+		subtitleKey: "wmsSubtitle",
+		items: ["wmsItem1", "wmsItem2", "wmsItem3"],
 		reverse: false,
 	},
 	{
 		image: "/assets/img/storage-service.jpg",
-		title: "Engineering & Management of Logistics Projects",
-		subtitle:
-			"Optimise the management of your production sites and warehouses with customised and secure solutions, adapted to the specifics of your industry.",
+		titleKey: "engineeringTitle",
+		subtitleKey: "engineeringSubtitle",
 		items: [
-			"Engineering and design of optimised solutions",
-			"Staff training of operations",
-			"Implementation of quality standards and performance indicators",
-			"Stock management, warehousing and value-added services",
-			"Management of shipments",
+			"engineeringItem1",
+			"engineeringItem2",
+			"engineeringItem3",
+			"engineeringItem4",
+			"engineeringItem5",
 		],
 		reverse: true,
 	},
 	{
 		image: "/assets/img/trucking-service.jpg",
-		title: "Optimise Your Distribution",
-		subtitle:
-			"Ensure product availability at your points of sale and customers with dedicated or shared logistics solutions to optimise your costs.",
+		titleKey: "distributionTitle",
+		subtitleKey: "distributionSubtitle",
 		items: [
-			"Reception and quality control",
-			"Optimisation of customs operations",
-			"Stock management and order preparation",
-			"Management of promotional operations",
-			"Management and preparation of shipments",
+			"distributionItem1",
+			"distributionItem2",
+			"distributionItem3",
+			"distributionItem4",
+			"distributionItem5",
 		],
 		reverse: false,
 	},
 	{
 		image: "/assets/img/features-4.jpg",
-		title: "Operational Support & Solutions",
-		subtitle:
-			"Benefit from operational support to implement the most adapted solution.",
-		description:
-			"Our engineering and project management department designs with you the most adapted solution for your inbound and outbound challenges, relying on logistics, transport and IT engineers.",
+		titleKey: "supportTitle",
+		subtitleKey: "supportSubtitle",
+		descriptionKey: "supportDescription",
 		items: [],
 		reverse: true,
 	},
-];
+] as const;
 
 export default function FeaturesSection() {
+	const t = useTranslations("Features");
+
 	return (
 		<section className="py-20 lg:py-28 bg-hrz-light dark:bg-hrz-dark">
 			<div className="container mx-auto px-6">
 				<Slide direction="up" triggerOnce>
 					<div className="text-center mb-16">
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-							Capabilities
+							{t("badge")}
 						</span>
 						<h2 className="text-3xl md:text-4xl font-bold text-hrz-blue dark:text-white mt-3 text-balance">
-							End-to-End Logistics Solutions
+							{t("title")}
 						</h2>
 					</div>
 				</Slide>
 
 				<div className="space-y-24">
 					{features.map((feature) => (
-						<Fade key={feature.title} triggerOnce>
+						<Fade key={feature.titleKey} triggerOnce>
 							<div
 								className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${
 									feature.reverse ? "lg:[&>*:first-child]:order-2" : ""
 								}`}
 							>
-								<Slide direction={feature.reverse ? "right" : "left"} triggerOnce>
+								<Slide
+									direction={feature.reverse ? "right" : "left"}
+									triggerOnce
+								>
 									<div className="relative group">
 										<div
 											className={`absolute -inset-3 bg-hrz-red/5 rounded-3xl ${
@@ -86,7 +87,7 @@ export default function FeaturesSection() {
 										<div className="relative h-72 md:h-96 rounded-2xl overflow-hidden shadow-lg">
 											<Image
 												src={feature.image}
-												alt={feature.title}
+												alt={t(feature.titleKey)}
 												fill
 												className="object-cover group-hover:scale-105 transition-transform duration-700"
 											/>
@@ -94,28 +95,31 @@ export default function FeaturesSection() {
 									</div>
 								</Slide>
 
-								<Slide direction={feature.reverse ? "left" : "right"} triggerOnce>
+								<Slide
+									direction={feature.reverse ? "left" : "right"}
+									triggerOnce
+								>
 									<div>
 										<h3 className="text-2xl md:text-3xl font-bold text-hrz-blue dark:text-white mb-4 leading-tight">
-											{feature.title}
+											{t(feature.titleKey)}
 										</h3>
 										<p className="text-muted-foreground leading-relaxed mb-6">
-											{feature.subtitle}
+											{t(feature.subtitleKey)}
 										</p>
-										{"description" in feature && feature.description && (
+										{"descriptionKey" in feature && feature.descriptionKey && (
 											<p className="text-muted-foreground leading-relaxed mb-6">
-												{feature.description}
+												{t(feature.descriptionKey)}
 											</p>
 										)}
 										{feature.items.length > 0 && (
 											<ul className="space-y-3">
-												{feature.items.map((item) => (
-													<li key={item} className="flex items-start gap-3">
+												{feature.items.map((itemKey) => (
+													<li key={itemKey} className="flex items-start gap-3">
 														<div className="w-5 h-5 bg-hrz-red/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
 															<Check className="h-3 w-3 text-hrz-red" />
 														</div>
 														<span className="text-muted-foreground text-sm leading-relaxed">
-															{item}
+															{t(itemKey)}
 														</span>
 													</li>
 												))}

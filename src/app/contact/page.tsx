@@ -2,37 +2,38 @@
 
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const contactInfo = [
-	{
-		icon: MapPin,
-		title: "Our Location",
-		content:
-			"Av. industrial libramiento 111, Parque Industrial libramiento, General Escobedo, Nuevo Leon, Mexico.",
-		href: undefined,
-	},
-	{
-		icon: Mail,
-		title: "Email Us",
-		content: "info@hrzlogistics.mx",
-		href: "mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page.",
-	},
-	{
-		icon: Phone,
-		title: "Call Us",
-		content: "+52 81 1285 3039",
-		href: "tel:+528112853039",
-	},
-];
-
 export default function ContactPage() {
 	const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
 		"idle",
 	);
+	const t = useTranslations("ContactPage");
+
+	const contactInfo = [
+		{
+			icon: MapPin,
+			title: t("ourLocation"),
+			content: t("address"),
+			href: undefined,
+		},
+		{
+			icon: Mail,
+			title: t("emailUs"),
+			content: "info@hrzlogistics.mx",
+			href: "mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page.",
+		},
+		{
+			icon: Phone,
+			title: t("callUs"),
+			content: "+52 81 1285 3039",
+			href: "tel:+528112853039",
+		},
+	];
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -50,14 +51,13 @@ export default function ContactPage() {
 				<div className="container mx-auto px-6 relative">
 					<div className="max-w-2xl mx-auto text-center">
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-							Get In Touch
+							{t("badge")}
 						</span>
 						<h1 className="text-4xl md:text-5xl font-bold text-white mt-3 leading-tight text-balance">
-							Contact Us
+							{t("title")}
 						</h1>
 						<p className="text-white/60 mt-5 text-lg leading-relaxed">
-							Located in Monterrey, Mexico with easy access to all ports in the
-							country for your global warehousing needs.
+							{t("description")}
 						</p>
 					</div>
 				</div>
@@ -69,12 +69,12 @@ export default function ContactPage() {
 					<ol className="flex items-center gap-2 text-sm text-muted-foreground">
 						<li>
 							<Link href="/" className="hover:text-hrz-red transition-colors">
-								Home
+								{t("breadcrumbHome")}
 							</Link>
 						</li>
 						<li className="text-muted-foreground/40">/</li>
 						<li className="text-hrz-blue dark:text-white font-medium">
-							Contact
+							{t("breadcrumbContact")}
 						</li>
 					</ol>
 				</div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
 							src="https://maps.google.com/maps?q=av%20industrial%20libramiento%20111&t=&z=13&ie=UTF8&iwloc=&output=embed"
 							allowFullScreen
 							loading="lazy"
-							title="HRZ Logistics location"
+							title={t("mapTitle")}
 						/>
 					</div>
 
@@ -98,11 +98,10 @@ export default function ContactPage() {
 						<div className="space-y-6">
 							<div>
 								<h2 className="text-2xl font-bold text-hrz-blue dark:text-white mb-2">
-									Reach Out to Us
+									{t("reachOut")}
 								</h2>
 								<p className="text-muted-foreground text-sm leading-relaxed">
-									Our team is ready to assist you with all your logistics and
-									warehousing needs.
+									{t("reachOutDesc")}
 								</p>
 							</div>
 
@@ -139,38 +138,37 @@ export default function ContactPage() {
 						<div className="lg:col-span-2">
 							<div className="p-8 rounded-2xl border border-border/50 bg-hrz-light/50 dark:bg-hrz-dark/50">
 								<h2 className="text-2xl font-bold text-hrz-blue dark:text-white mb-2">
-									Send Us a Message
+									{t("sendMessage")}
 								</h2>
 								<p className="text-sm text-muted-foreground mb-6">
-									Fill out the form below and we will get back to you as soon as
-									possible.
+									{t("sendMessageDesc")}
 								</p>
 
 								<form onSubmit={handleSubmit} className="space-y-5">
 									<div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 										<Input
 											name="name"
-											placeholder="Your Name"
+											placeholder={t("yourName")}
 											required
 											className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
 										/>
 										<Input
 											name="email"
 											type="email"
-											placeholder="Your Email"
+											placeholder={t("yourEmail")}
 											required
 											className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
 										/>
 									</div>
 									<Input
 										name="subject"
-										placeholder="Subject"
+										placeholder={t("subject")}
 										required
 										className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
 									/>
 									<Textarea
 										name="message"
-										placeholder="Your message..."
+										placeholder={t("yourMessage")}
 										rows={5}
 										required
 										className="rounded-lg bg-background border-border/50 focus:border-hrz-red resize-none"
@@ -178,12 +176,12 @@ export default function ContactPage() {
 
 									{status === "sent" && (
 										<div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 text-sm px-4 py-3 rounded-lg">
-											Your message has been sent. Thank you!
+											{t("successMessage")}
 										</div>
 									)}
 									{status === "error" && (
 										<div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 text-sm px-4 py-3 rounded-lg">
-											Something went wrong. Please try again.
+											{t("errorMessage")}
 										</div>
 									)}
 
@@ -193,10 +191,10 @@ export default function ContactPage() {
 										className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
 									>
 										{status === "sending" ? (
-											"Sending..."
+											t("sendingButton")
 										) : (
 											<>
-												Send Message
+												{t("sendButton")}
 												<Send className="ml-2 h-4 w-4" />
 											</>
 										)}

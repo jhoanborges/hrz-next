@@ -3,69 +3,65 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Fade, Slide } from "react-awesome-reveal";
 
 const services = [
 	{
 		image: "/assets/img/storage-service.jpg",
-		title: "Storage",
-		description:
-			"Flexible storage options with excellent warehousing facilities, completely equipped to handle bulk cargo and break bulk requirements.",
+		titleKey: "storage",
+		descKey: "storageDesc",
 	},
 	{
 		image: "/assets/img/logistics-service.jpg",
-		title: "Logistics",
-		description:
-			"Let us simplify and connect your supply chain from end to end with our comprehensive logistics solutions.",
+		titleKey: "logistics",
+		descKey: "logisticsDesc",
 	},
 	{
 		image: "/assets/img/cargo-service.jpg",
-		title: "Cargo",
-		description:
-			"Our Cargo Setups, adjacent to all terminals, are open 24/7 providing safe and speedy dispatch and delivery.",
+		titleKey: "cargo",
+		descKey: "cargoDesc",
 	},
 	{
 		image: "/assets/img/trucking-service.jpg",
-		title: "Trucking",
-		description:
-			"Our loyal fleet of over 600,000 independent truckers is always ready to roll for your delivery needs.",
+		titleKey: "trucking",
+		descKey: "truckingDesc",
 	},
 	{
 		image: "/assets/img/packaging-service.jpg",
-		title: "Packaging",
-		description:
-			"We help with all types of packing operations, no matter the location or destination of your products.",
+		titleKey: "packaging",
+		descKey: "packagingDesc",
 	},
 	{
 		image: "/assets/img/warehousing-service.jpg",
-		title: "Warehousing",
-		description:
-			"Customised warehouse logistics solutions with great importance on flexibility, transparency and best practice.",
+		titleKey: "warehousing",
+		descKey: "warehousingDesc",
 	},
-];
+] as const;
 
 export default function ServicesGrid() {
+	const t = useTranslations("ServicesGrid");
+
 	return (
 		<section className="py-20 lg:py-28 bg-hrz-light dark:bg-hrz-dark">
 			<div className="container mx-auto px-6">
 				<Slide direction="up" triggerOnce>
 					<div className="text-center mb-14">
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-							What We Do
+							{t("badge")}
 						</span>
 						<h2 className="text-3xl md:text-4xl font-bold text-hrz-blue dark:text-white mt-3 text-balance">
-							Our Services
+							{t("title")}
 						</h2>
 						<p className="text-muted-foreground mt-4 max-w-2xl mx-auto leading-relaxed">
-							Comprehensive warehousing and logistics solutions tailored to your
-							business needs across the globe.
+							{t("description")}
 						</p>
 					</div>
 				</Slide>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 					{services.map((service, i) => (
-						<Fade key={service.title} triggerOnce delay={i * 100}>
+						<Fade key={service.titleKey} triggerOnce delay={i * 100}>
 							<Link
 								href="/services"
 								className="group relative bg-background rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:shadow-hrz-blue/5 transition-all duration-500 block h-full"
@@ -73,7 +69,7 @@ export default function ServicesGrid() {
 								<div className="relative h-52 overflow-hidden">
 									<Image
 										src={service.image}
-										alt={service.title}
+										alt={t(service.titleKey)}
 										fill
 										className="object-cover group-hover:scale-105 transition-transform duration-500"
 									/>
@@ -81,13 +77,13 @@ export default function ServicesGrid() {
 								</div>
 								<div className="p-6">
 									<h3 className="font-semibold text-lg text-hrz-blue dark:text-white mb-2 group-hover:text-hrz-red transition-colors">
-										{service.title}
+										{t(service.titleKey)}
 									</h3>
 									<p className="text-sm text-muted-foreground leading-relaxed">
-										{service.description}
+										{t(service.descKey)}
 									</p>
 									<div className="flex items-center gap-1.5 text-sm font-medium text-hrz-red mt-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-										Learn More <ArrowRight className="h-4 w-4" />
+										{t("learnMore")} <ArrowRight className="h-4 w-4" />
 									</div>
 								</div>
 							</Link>

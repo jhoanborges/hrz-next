@@ -2,10 +2,13 @@
 
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { Fade, Slide } from "react-awesome-reveal";
 import { Button } from "@/components/ui/button";
 
 export default function CtaSection() {
+	const t = useTranslations("CTA");
+
 	return (
 		<section className="relative py-24 lg:py-32 bg-hrz-blue overflow-hidden">
 			{/* Decorative elements */}
@@ -16,19 +19,17 @@ export default function CtaSection() {
 				<div className="max-w-3xl mx-auto text-center">
 					<Fade triggerOnce>
 						<span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
-							Get Started
+							{t("badge")}
 						</span>
 					</Fade>
 					<Slide direction="up" triggerOnce>
 						<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 leading-tight text-balance">
-							Local Expertise, Global Coverage
+							{t("title")}
 						</h2>
 					</Slide>
 					<Fade triggerOnce delay={200}>
 						<p className="text-white/70 text-lg mt-6 max-w-2xl mx-auto leading-relaxed">
-							Present in over 50 countries and backed by our extensive network,
-							our teams of local experts are ready to advise you on the best
-							solution for your business.
+							{t("description")}
 						</p>
 					</Fade>
 					<Fade triggerOnce delay={400}>
@@ -39,7 +40,7 @@ export default function CtaSection() {
 								className="bg-hrz-red hover:bg-hrz-red/90 text-white rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/30"
 							>
 								<Link href="/contact">
-									Request a Quote
+									{t("requestQuote")}
 									<ArrowRight className="ml-2 h-4 w-4" />
 								</Link>
 							</Button>
@@ -48,7 +49,7 @@ export default function CtaSection() {
 								size="lg"
 								className="rounded-lg px-8 h-12 text-base font-medium bg-transparent border border-background/30 text-white hover:bg-background hover:text-hrz-blue"
 							>
-								<Link href="/services">Explore Services</Link>
+								<Link href="/services">{t("exploreServices")}</Link>
 							</Button>
 						</div>
 					</Fade>
