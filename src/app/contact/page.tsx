@@ -1,14 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 
+const contactInfo = [
+  {
+    icon: MapPin,
+    title: "Our Location",
+    content: "Av. industrial libramiento 111, Parque Industrial libramiento, General Escobedo, Nuevo Leon, Mexico.",
+    href: undefined,
+  },
+  {
+    icon: Mail,
+    title: "Email Us",
+    content: "info@hrzlogistics.mx",
+    href: "mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page.",
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    content: "+52 81 1285 3039",
+    href: "tel:+528112853039",
+  },
+];
+
 export default function ContactPage() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -19,151 +42,167 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Breadcrumb / Header */}
-      <section
-        className="relative bg-cover bg-center py-20"
-        style={{ backgroundImage: "url('/assets/img/page-header.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-hrz-blue/70" />
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Contact
-          </h1>
-          <p className="text-gray-200 max-w-xl mx-auto">
-            We are located in Monterrey, México with easy access to all ports in
-            the country for your global warehousing needs. Our warehouse and
-            storage facilities in either location allow for bulk storage and
-            de-vaning of containers arriving from overseas.
-          </p>
+      {/* Page Header */}
+      <section className="relative bg-hrz-blue py-24 lg:py-32 overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-hrz-red/5 rounded-full translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-hrz-red/5 rounded-full -translate-x-1/3 translate-y-1/3" />
+        <div className="container mx-auto px-6 relative">
+          <div className="max-w-2xl mx-auto text-center">
+            <span className="text-hrz-red text-sm font-semibold uppercase tracking-wider">
+              Get In Touch
+            </span>
+            <h1 className="text-4xl md:text-5xl font-bold text-background mt-3 leading-tight text-balance">
+              Contact Us
+            </h1>
+            <p className="text-background/60 mt-5 text-lg leading-relaxed">
+              Located in Monterrey, Mexico with easy access to all ports in the
+              country for your global warehousing needs.
+            </p>
+          </div>
         </div>
       </section>
 
-      <nav className="bg-hrz-light py-3">
-        <div className="container mx-auto px-4">
+      {/* Breadcrumb */}
+      <nav className="bg-hrz-light py-3 border-b border-border/50">
+        <div className="container mx-auto px-6">
           <ol className="flex items-center gap-2 text-sm text-muted-foreground">
             <li>
-              <Link href="/" className="hover:text-hrz-red transition-colors">
+              <Link
+                href="/"
+                className="hover:text-hrz-red transition-colors"
+              >
                 Home
               </Link>
             </li>
-            <li>/</li>
+            <li className="text-muted-foreground/40">/</li>
             <li className="text-hrz-blue font-medium">Contact</li>
           </ol>
         </div>
       </nav>
 
-      <section className="py-16">
-        <div className="container mx-auto px-4">
+      <section className="py-20 lg:py-28 bg-background">
+        <div className="container mx-auto px-6">
           {/* Map */}
-          <div className="mb-8 rounded-lg overflow-hidden">
+          <div className="mb-16 rounded-2xl overflow-hidden shadow-lg border border-border/50">
             <iframe
-              className="w-full h-[340px] border-0"
+              className="w-full h-[380px] border-0"
               src="https://maps.google.com/maps?q=av%20industrial%20libramiento%20111&t=&z=13&ie=UTF8&iwloc=&output=embed"
               allowFullScreen
               loading="lazy"
+              title="HRZ Logistics location"
             />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Contact Info */}
             <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-hrz-red/10 rounded-lg flex items-center justify-center">
-                  <MapPin className="h-5 w-5 text-hrz-red" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-hrz-blue">Location:</h4>
-                  <p className="text-sm text-muted-foreground">
-                    Av. industrial libramiento 111, Parque Industrial
-                    libramiento, General Escobedo, Nuevo León, México.
-                  </p>
-                </div>
+              <div>
+                <h2 className="text-2xl font-bold text-hrz-blue mb-2">
+                  Reach Out to Us
+                </h2>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Our team is ready to assist you with all your logistics and
+                  warehousing needs.
+                </p>
               </div>
 
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-hrz-red/10 rounded-lg flex items-center justify-center">
-                  <Mail className="h-5 w-5 text-hrz-red" />
+              {contactInfo.map((item) => (
+                <div
+                  key={item.title}
+                  className="flex gap-4 p-5 rounded-xl border border-border/50 hover:border-hrz-red/20 hover:shadow-sm transition-all"
+                >
+                  <div className="flex-shrink-0 w-11 h-11 bg-hrz-red/10 rounded-xl flex items-center justify-center">
+                    <item.icon className="h-5 w-5 text-hrz-red" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-hrz-blue text-sm">
+                      {item.title}
+                    </h4>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        className="text-sm text-muted-foreground hover:text-hrz-red transition-colors mt-0.5 block"
+                      >
+                        {item.content}
+                      </a>
+                    ) : (
+                      <p className="text-sm text-muted-foreground mt-0.5 leading-relaxed">
+                        {item.content}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-hrz-blue">Email:</h4>
-                  <p className="text-sm">
-                    <a
-                      href="mailto:info@hrzlogistics.mx?subject=Services Information&body=I saw your web page."
-                      className="text-muted-foreground hover:text-hrz-red transition-colors"
-                    >
-                      info@hrzlogistics.mx
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 bg-hrz-red/10 rounded-lg flex items-center justify-center">
-                  <Phone className="h-5 w-5 text-hrz-red" />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-hrz-blue">Call:</h4>
-                  <p className="text-sm">
-                    <a
-                      href="tel:+528112853039"
-                      className="text-muted-foreground hover:text-hrz-red transition-colors"
-                    >
-                      +52 81 1285 3039
-                    </a>
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    name="name"
-                    placeholder="Your Name"
-                    required
-                  />
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                    required
-                  />
-                </div>
-                <Input
-                  name="subject"
-                  placeholder="Subject"
-                  required
-                />
-                <Textarea
-                  name="message"
-                  placeholder="Message"
-                  rows={5}
-                  required
-                />
+              <div className="p-8 rounded-2xl border border-border/50 bg-hrz-light/50">
+                <h2 className="text-2xl font-bold text-hrz-blue mb-2">
+                  Send Us a Message
+                </h2>
+                <p className="text-sm text-muted-foreground mb-6">
+                  Fill out the form below and we will get back to you as soon as
+                  possible.
+                </p>
 
-                {status === "sent" && (
-                  <p className="text-green-600 text-sm">
-                    Your message has been sent. Thank you!
-                  </p>
-                )}
-                {status === "error" && (
-                  <p className="text-red-600 text-sm">
-                    Something went wrong. Please try again.
-                  </p>
-                )}
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <Input
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
+                    />
+                    <Input
+                      name="email"
+                      type="email"
+                      placeholder="Your Email"
+                      required
+                      className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
+                    />
+                  </div>
+                  <Input
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                    className="h-12 rounded-lg bg-background border-border/50 focus:border-hrz-red"
+                  />
+                  <Textarea
+                    name="message"
+                    placeholder="Your message..."
+                    rows={5}
+                    required
+                    className="rounded-lg bg-background border-border/50 focus:border-hrz-red resize-none"
+                  />
 
-                <div className="text-center">
+                  {status === "sent" && (
+                    <div className="bg-green-50 border border-green-200 text-green-700 text-sm px-4 py-3 rounded-lg">
+                      Your message has been sent. Thank you!
+                    </div>
+                  )}
+                  {status === "error" && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
+                      Something went wrong. Please try again.
+                    </div>
+                  )}
+
                   <Button
                     type="submit"
                     disabled={status === "sending"}
-                    className="bg-hrz-red hover:bg-hrz-red/90 text-white px-8"
+                    className="bg-hrz-red hover:bg-hrz-red/90 text-background rounded-lg px-8 h-12 text-base font-medium shadow-lg shadow-hrz-red/20"
                   >
-                    {status === "sending" ? "Sending..." : "Send Message"}
+                    {status === "sending" ? (
+                      "Sending..."
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="ml-2 h-4 w-4" />
+                      </>
+                    )}
                   </Button>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>

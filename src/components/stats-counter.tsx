@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { end: 232, label: "Clients" },
-  { end: 521, label: "Projects" },
-  { end: 1453, label: "Support" },
-  { end: 32, label: "Workers" },
+  { end: 232, suffix: "+", label: "Clients Worldwide" },
+  { end: 521, suffix: "+", label: "Projects Delivered" },
+  { end: 1453, suffix: "", label: "Hours of Support" },
+  { end: 32, suffix: "+", label: "Team Members" },
 ];
 
 function useCountUp(end: number, duration = 2000) {
@@ -41,21 +41,39 @@ function useCountUp(end: number, duration = 2000) {
   return { count, ref };
 }
 
-function StatItem({ end, label }: { end: number; label: string }) {
+function StatItem({
+  end,
+  label,
+  suffix,
+}: {
+  end: number;
+  label: string;
+  suffix: string;
+}) {
   const { count, ref } = useCountUp(end);
   return (
     <div ref={ref} className="text-center">
-      <span className="text-3xl font-bold text-hrz-red">{count}</span>
-      <p className="text-sm text-muted-foreground mt-1">{label}</p>
+      <div className="text-4xl lg:text-5xl font-bold text-hrz-red tracking-tight">
+        {count}
+        <span className="text-hrz-red/70">{suffix}</span>
+      </div>
+      <div className="mt-2 text-sm font-medium text-muted-foreground uppercase tracking-wider">
+        {label}
+      </div>
     </div>
   );
 }
 
-export default function StatsCounter() {
+export default function StatsCounter({ variant = "default" }: { variant?: "default" | "dark" }) {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
       {stats.map((stat) => (
-        <StatItem key={stat.label} end={stat.end} label={stat.label} />
+        <StatItem
+          key={stat.label}
+          end={stat.end}
+          label={stat.label}
+          suffix={stat.suffix}
+        />
       ))}
     </div>
   );

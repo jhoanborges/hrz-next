@@ -17,8 +17,9 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "HRZ Logistics",
-  description: "Warehousing and Distribution - HRZ Logistics",
+  title: "HRZ Logistics - Warehousing & Distribution",
+  description:
+    "HRZ Logistics provides end-to-end warehousing and distribution solutions across 50+ countries. Storage, logistics, cargo, trucking, and packaging services.",
   icons: {
     icon: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
@@ -32,9 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}>
+      <body
+        className={`${poppins.variable} ${openSans.variable} font-sans antialiased`}
+      >
         <Header />
-        <main className="pt-16">{children}</main>
+        <main className="pt-18">{children}</main>
         <Footer />
       </body>
     </html>
